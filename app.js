@@ -2,7 +2,7 @@
 
 var parent = document.getElementById('photo-display');
 var allPhotos = [];
-var testingRounds = 0;
+var testingRounds = 25;
 
 function productImage(url, alt, title){
   this.filePath = url;
@@ -46,20 +46,21 @@ function randomNumber(min=0, max){
   return Math.floor(Math.random()* (max - min + 1)) + min;
 }
 
-function getRandomImage(){
-  parent.textContent = '';
-  var randomIndex = randomNumber(0, allPhotos.length-1);
-  var secondRandomIndex = randomNumber(0, allPhotos.length-1);
-  var thirdRandomIndex = randomNumber(0, allPhotos.length-1);
+// for(var i = 0; i < testingRounds; i++){
+  function getRandomImage(){
+    parent.textContent = '';
+    var randomIndex = randomNumber(0, allPhotos.length-1);
+    var secondRandomIndex = randomNumber(0, allPhotos.length-1);
+    var thirdRandomIndex = randomNumber(0, allPhotos.length-1);
 
-  while(randomIndex === secondRandomIndex){
+    while(randomIndex === secondRandomIndex){
     secondRandomIndex = randomNumber(0, allPhotos.length-1);
-  }
-  while(randomIndex === thirdRandomIndex){
+    }
+    while(randomIndex === thirdRandomIndex){
     thirdRandomIndex = randomNumber(0, allPhotos.length-1);
   }
-  // for(var i = 0; i < 3; i++){ // Wanted to try and create a loop here.
-  
+    // for(var i = 0; i < 3; i++){ // Wanted to try and create a loop here.
+ 
   allPhotos[randomIndex].post();
   allPhotos[randomIndex].views++;
   // }
@@ -73,7 +74,9 @@ function getRandomImage(){
 // Sometimes the first photo is still the same as the third.
 
 getRandomImage();
+// } for function beginning on line 49
 
+// for(var i = 0; i < testingRounds; i++){ //Each photo clicked on 25 times per single click.
 parent.addEventListener('click', function(){
   var productClickedOn = event.target.title;
   console.log(event.target.title);
@@ -90,3 +93,5 @@ parent.addEventListener('click', function(){
 // for(var i = 0; i < 25; i++){
   
 // }
+// Need to figure out where to put the loop to get the required number of rounds. Number can be manipulated where it's listed as a variable, with a "generic" name throughout the rest of the doc.
+
