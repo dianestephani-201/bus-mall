@@ -23,7 +23,7 @@ new productImage('img/cthulhu.jpg', 'cthulhu', 'cthulhu');
 new productImage('img/dog-duck.jpg', 'dog-duck', 'dog-duck');
 new productImage('img/dragon.jpg', 'dragon', 'dragon');
 new productImage('img/pen.jpg', 'pen', 'pen');
-new productImage('img/pet-sweep', 'pet-sweep', 'pet-sweep');
+new productImage('img/pet-sweep.jpg', 'pet-sweep', 'pet-sweep');
 new productImage('img/scissors.jpg', 'scissors', 'scissors');
 new productImage('img/shark.jpg', 'shark', 'shark');
 new productImage('img/sweep.png', 'sweep', 'sweep');
@@ -41,18 +41,42 @@ imageElement.setAttribute('title', this.title);
 parent.appendChild(imageElement);
 }
 
-function.randomNumber(min=0, max){
+function randomNumber(min=0, max){
   return Math.floor(Math.random()* (max - min + 1)) + min;
 }
 
-function.getRandomImage(){
+function getRandomImage(){
   parent.textContent = '';
   var randomIndex = randomNumber(0, allPhotos.length-1);
   var secondRandomIndex = randomNumber(0, allPhotos.length-1);
   var thirdRandomIndex = randomNumber(0, allPhotos.length-1);
 
-  while(randomIndex === secondRandomIndex || thirdRandomIndex){
+  while(randomIndex === secondRandomIndex){
     secondRandomIndex = randomNumber(0, allPhotos.length-1);
-    
   }
+  while(randomIndex === thirdRandomIndex){
+    thirdRandomIndex = randomNumber(0, allPhotos.length-1);
+  }
+  // for(var i = 0; i < 3; i++){ // Wanted to try and create a loop here.
+  allPhotos[randomIndex].post();
+  allPhotos[randomIndex].views++;
+  // }
+  allPhotos[secondRandomIndex].post();
+  allPhotos[secondRandomIndex].views++
+
+  allPhotos[thirdRandomIndex].post();
+  allPhotos[thirdRandomIndex].views++
 }
+
+getRandomImage();
+
+parent.addEventListener('click', function(){
+  var productClickedOn = event.target.title;
+  console.log(event.target.title);
+  for(var i = 0; i < allPhotos.length; i++){
+    if(productClickedOn === allPhotos[i].title){
+      allPhotos[i].votes++
+    }
+  }
+})
+getRandomImage();
