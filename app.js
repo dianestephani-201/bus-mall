@@ -2,6 +2,7 @@
 
 var parent = document.getElementById('photo-display');
 var allPhotos = [];
+var testingRounds = 0;
 
 function productImage(url, alt, title){
   this.filePath = url;
@@ -58,6 +59,7 @@ function getRandomImage(){
     thirdRandomIndex = randomNumber(0, allPhotos.length-1);
   }
   // for(var i = 0; i < 3; i++){ // Wanted to try and create a loop here.
+  
   allPhotos[randomIndex].post();
   allPhotos[randomIndex].views++;
   // }
@@ -66,7 +68,9 @@ function getRandomImage(){
 
   allPhotos[thirdRandomIndex].post();
   allPhotos[thirdRandomIndex].views++
+  
 }
+// Sometimes the first photo is still the same as the third.
 
 getRandomImage();
 
@@ -76,7 +80,13 @@ parent.addEventListener('click', function(){
   for(var i = 0; i < allPhotos.length; i++){
     if(productClickedOn === allPhotos[i].title){
       allPhotos[i].votes++
+      getRandomImage();
     }
   }
 })
-getRandomImage();
+// getRandomImage();
+
+// var testingRounds = 0;
+// for(var i = 0; i < 25; i++){
+  
+// }
