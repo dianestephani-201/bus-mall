@@ -75,31 +75,10 @@ function randomNumber(min=0, max){
 // Sometimes the first photo is still the same as the third.
 
 getRandomImage();
-// } for function beginning on line 49
 
-// for(var i = 0; i < testingRounds; i++){ //Each photo clicked on 25 times per single click.
-// parent.addEventListener('click', function(){
-//   var productClickedOn = event.target.title;
-//   console.log(event.target.title);
-  // below copied from Stack Overflow
-  // var votes = 0; // should be var not int
-  //   function voteClick() {
-  //       votes += 1;
-  //       document.getElementById("clicks").innerHTML = votes;
-        // End stack overflow copy
-  // for(var i = 0; i < allPhotos.length; i++){
-  //   if(productClickedOn === allPhotos[i].title){
-  //     allPhotos[i].votes++
-  //     getRandomImage();
-      // voteClick();
-//     }
-//   }
-// })
 
 function handleClickOnClickEvent(){
   var productClickedOn = event.target.title;
-  // console.log(event.target.title);
-  // clickCounts++;
   for(var i = 0; i < allPhotos.length; i++){
     if(productClickedOn === allPhotos[i].title){
       allPhotos[i].votes++;
@@ -124,14 +103,3 @@ function totalResults(){
 }
 
 parent.addEventListener('click', handleClickOnClickEvent);
-
-
-
-
-// getRandomImage();
-
-// var testingRounds = 0;
-// for(var i = 0; i < 25; i++){
-  
-// }
-// Need to figure out where to put the loop to get the required number of rounds. Number can be manipulated where it's listed as a variable, with a "generic" name throughout the rest of the doc.
