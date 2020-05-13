@@ -2,7 +2,8 @@
 
 var parent = document.getElementById('photo-display');
 var allPhotos = [];
-var testingRounds = 25;
+var clickCounts = 0;
+var results = document.getElementById('results');
 
 function productImage(url, alt, title){
   this.filePath = url;
@@ -74,24 +75,31 @@ function randomNumber(min=0, max){
 // Sometimes the first photo is still the same as the third.
 
 getRandomImage();
-// } for function beginning on line 49
 
-// for(var i = 0; i < testingRounds; i++){ //Each photo clicked on 25 times per single click.
-parent.addEventListener('click', function(){
+
+function handleClickOnClickEvent(){
   var productClickedOn = event.target.title;
-  console.log(event.target.title);
   for(var i = 0; i < allPhotos.length; i++){
     if(productClickedOn === allPhotos[i].title){
-      allPhotos[i].votes++
+      allPhotos[i].votes++;
       getRandomImage();
+      clickCounts++;
+      console.log(event.target.title + ' has ' + allPhotos[i].votes + ' votes.');
+    }
+    if(clickCounts === 25) {
+    parent.removeEventListener('click', handleClickOnClickEvent);
+    console.log('You\'ve hit 25 votes!');
+    totalResults();
     }
   }
-})
-// getRandomImage();
+}
 
-// var testingRounds = 0;
-// for(var i = 0; i < 25; i++){
-  
-// }
-// Need to figure out where to put the loop to get the required number of rounds. Number can be manipulated where it's listed as a variable, with a "generic" name throughout the rest of the doc.
+function totalResults(){
+  for(var i = 0; i < allPhotos.length; i++){
+    var listElement = document.createElement('li');
+    listElement.textContent = allPhotos[i].title + ' received ' + allPhotos[i].votes + ' votes and ' + allPhotos[i].views + ' views.';
+    results.appendChild(listElement);
+  }
+}
 
+parent.addEventListener('click', handleClickOnClickEvent);
