@@ -99,6 +99,7 @@ function totalResults(){
     var listElement = document.createElement('li');
     listElement.textContent = allPhotos[i].title + ' received ' + allPhotos[i].votes + ' votes and ' + allPhotos[i].views + ' views.';
     results.appendChild(listElement);
+    makeProductChart();
   }
 }
 
@@ -116,3 +117,58 @@ var productsTurnedBackIntoJavaScript = JSON.parse(productsFromLocalStorage);
 console.log('My parsed products', productsTurnedBackIntoJavaScript);
 
 // placeholder
+function makeProductChart(){
+  var productNamesArray = [];
+  var productLikesArray = [];
+
+  for(var i = 0; i < allPhotos.length; i++){
+    var singleProductName = allPhotos[i].title;
+    productNamesArray.push(singleProductName);
+  }
+
+  for(var i = 0; i < allPhotos.length; i++){
+    var singleProductLikes = allPhotos[i].clickCounts;
+    productLikesArray.push(singleProductLikes);
+  }
+
+  var ctx = document.getElementById('chart').getContext('2d');
+  var resultsChart = new Chart(ctx, {
+    type: 'bar',
+
+    data: {
+      labels: productNamesArray,
+      datasets: [{
+        label: 'product-likes',
+        backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)'],
+        borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)'],
+        borderWidth: 1,
+        data: productLikesArray, 
+      }]
+  },
+
+  options: {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  }
+  });
+}
+
+
+// 130 'rgb(255, 99, 132)'
