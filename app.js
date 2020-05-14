@@ -105,6 +105,18 @@ function totalResults(){
 
 parent.addEventListener('click', handleClickOnClickEvent);
 
+var stringPhotos = JSON.stringify(allPhotos);
+console.log('This is the JSON for the allPhotos array.');
+
+localStorage.setItem('products', stringPhotos);
+
+var productsFromLocalStorage = localStorage.getItem('products');
+console.log('These are my producdts from Local Storage.', productsFromLocalStorage);
+
+var productsTurnedBackIntoJavaScript = JSON.parse(productsFromLocalStorage);
+console.log('My parsed products', productsTurnedBackIntoJavaScript);
+
+// placeholder
 function makeProductChart(){
   var productNamesArray = [];
   var productLikesArray = [];
