@@ -103,3 +103,33 @@ function totalResults(){
 }
 
 parent.addEventListener('click', handleClickOnClickEvent);
+
+function makeProductChart(){
+  var productNamesArray = [];
+  var productLikesArray = [];
+
+  for(var i = 0; i < allPhotos.length; i++){
+    var singleProductName = allPhotos[i].title;
+    productNamesArray.push(singleProductName);
+  }
+
+  for(var i = 0; i < allPhotos.length; i++){
+    var singleProductLikes = allPhotos[i].clickCounts;
+    productLikesArray.push(singleProductLikes);
+  }
+
+  var ctx = document.getElementById('results').getContext('2d');
+  var resultsChart = new Chart(ctx, {
+    type: 'bar',
+
+    data: {
+      labels: productNamesArray,
+      datasets: [{
+        label: 'product-likes',
+        backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: 'rgb(255, 99, 132)',
+        data: productLikesArray, 
+      }]
+    },
+  }
+}
