@@ -114,3 +114,5 @@ console.log('These are my producdts from Local Storage.', productsFromLocalStora
 
 var productsTurnedBackIntoJavaScript = JSON.parse(productsFromLocalStorage);
 console.log('My parsed products', productsTurnedBackIntoJavaScript);
+
+// placeholder
