@@ -111,7 +111,7 @@ console.log('This is the JSON for the allPhotos array.');
 localStorage.setItem('products', stringPhotos);
 
 var productsFromLocalStorage = localStorage.getItem('products');
-console.log('These are my producdts from Local Storage.', productsFromLocalStorage);
+console.log('These are my products from Local Storage.', productsFromLocalStorage);
 
 var productsTurnedBackIntoJavaScript = JSON.parse(productsFromLocalStorage);
 console.log('My parsed products', productsTurnedBackIntoJavaScript);
@@ -130,6 +130,7 @@ function makeProductChart(){
     var singleProductLikes = allPhotos[i].clickCounts;
     productLikesArray.push(singleProductLikes);
   }
+
 
   var ctx = document.getElementById('chart').getContext('2d');
   var resultsChart = new Chart(ctx, {
